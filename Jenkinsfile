@@ -4,6 +4,15 @@ pipeline {
   }
 
   stages {
+     stage('Initialize') {
+        steps {
+          script {
+            def dockerHome = tool 'docker-jenkins'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+          }
+        }
+    }
+
     stage('Build') {
       steps {
         sh 'docker build -t ui ui/'
