@@ -19,7 +19,7 @@ class Results extends React.Component {
     Object.keys(this.props.data).forEach(function(key) {
       arr.push([key, data[key]]);
     });
-    return <ul>{arr.map(item => <ResultsField name={item[0]} value={item[1]} />)}</ul>;
+    return <ul>{arr.map(item => <ResultsField key={item[0]} name={item[0]} value={item[1]} />)}</ul>;
   }
 }
 
@@ -55,7 +55,7 @@ class SearchForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label for="domain">
+          <label htmlFor="domain">
             WHOIS IP or Domain Lookup: <br/>
           </label>
           <input type="text" name="domain" onChange={this.handleChange} value={this.state.value} placeholder="e.g. www.google.com..."/>

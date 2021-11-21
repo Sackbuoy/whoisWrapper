@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    image: "api"
+    ports:
+      - "3001:3001"
+  frontend:
+    build:
+      context: ./ui
+      dockerfile: ./Dockerfile
+    image: "ui"
+    ports:
+      - "3000:3000"
+    links:
+      - "backend:be"

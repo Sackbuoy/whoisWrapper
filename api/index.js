@@ -4,8 +4,8 @@ import whois from 'whois-api';
 const PORT = 3001;
 const app = express();
 
-app.listen(PORT, () =>
-  console.log(`WHOIS wrapper API has started, and is running on: http://localhost:${PORT}`)
+app.listen(PORT, '0.0.0.0', () =>
+  console.log(`WHOIS wrapper API has started, and is running on port ${PORT}`)
 );
 
 app.get('/lookup/:domain', (req, resp) => {
