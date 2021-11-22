@@ -15,7 +15,7 @@ function App() {
 class Results extends React.Component {
   render() {
     const data = this.props.data;
-    if(Object.keys(data).length === 0) {
+    if(Object.keys(data).length === 0 && data !== false) {
       return <span>No data found for {JSON.stringify(this.props.domain)}</span>
     }
     let arr = [];
@@ -46,6 +46,9 @@ class SearchForm extends React.Component {
 
   handleChange(event) {
     this.setState({value: event.target.value});
+    if (event.target.value.length === 0) {
+      this.setState({responseData: false})
+    }
   }
 
   handleSubmit(event) {
