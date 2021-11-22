@@ -25,7 +25,7 @@ class Results extends React.Component {
 
 class ResultsField extends React.Component {
   render() {
-    return <li>{this.props.name + ": " + JSON.stringify(this.props.value).replace(/["]+/g, '')}</li>;
+    return <li><b>{this.props.name}</b>{": " + JSON.stringify(this.props.value).replace(/["]+/g, '')}</li>;
   }
 }
 
@@ -53,13 +53,13 @@ class SearchForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="formbox">
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="domain">
-            WHOIS IP or Domain Lookup: <br/>
+            WHOIS IP or Domain Lookup: <br/><br/>
           </label>
           <input type="text" name="domain" onChange={this.handleChange} value={this.state.value} placeholder="e.g. www.google.com..."/>
-          <input type="submit"/>
+          <input type="submit" value="Submit"/>
         </form>
         {this.state.responseData ? 
           <div>

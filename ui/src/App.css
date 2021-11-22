@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-image: linear-gradient(teal, black);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -40,4 +40,52 @@
 ul, li {
   display: block; 
   text-align: left;
+  word-wrap: break-word;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+#formbox {
+  width: 80%;
+}
+
+input[type="text"]{
+  display: block;
+  margin: auto;
+  padding: 3% 30%; 
+  border-radius: 50px;
+  font-size: 50px;
+}
+
+input[type="submit"] {
+  margin: 10px;
+  padding: 2% 10%; 
+  font-size: 40px;
+}
+
+@media only screen and (max-width:  801px) {
+  #formbox {
+    width: 80%;
+  }
+
+  input[type="text"]{
+    display: block;
+    padding: 3% 20%; 
+    border-radius: 50px;
+    font-size: 15px;
+  }
+
+  input[type="submit"] {
+    margin: 10px;
+    padding: 2% 10%; 
+    font-size: 20px;
+  }
+
+  ul, li {
+    display: block; 
+    text-align: left;
+    word-wrap: break-word;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
