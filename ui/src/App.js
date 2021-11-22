@@ -15,6 +15,9 @@ function App() {
 class Results extends React.Component {
   render() {
     const data = this.props.data;
+    if(Object.keys(data).length === 0) {
+      return <span>No data found for {JSON.stringify(this.props.domain)}</span>
+    }
     let arr = [];
     Object.keys(this.props.data).forEach(function(key) {
       arr.push([key, data[key]]);
@@ -63,7 +66,7 @@ class SearchForm extends React.Component {
         </form>
         {this.state.responseData ? 
           <div>
-            <Results data={this.state.responseData}/>
+            <Results data={this.state.responseData} domain={this.state.value}/>
           </div>
           :
           <div> 
