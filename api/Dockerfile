@@ -11,6 +11,6 @@ RUN ls
 RUN npm install --production
 COPY . .
 
-EXPOSE 3001
+EXPOSE 4000
 
 CMD ["node", "server.js"]

@@ -1,28 +1,38 @@
-const express = require('express');
-const whois = require('whois-api');
+const WhoisDataSource = require('./WhoisDataSource')
+const { ApolloServer, gql } = require('apollo-server');
 
-const app = express();
+const typeDefs = gql`
+  type Domain {
+    id: String
+    whois_server: String
+    updated_date: String
+    creation_date: String
+    expiration_date: String
+    registrar: String
+    emails: String
+    status: String
+    nameservers: String
+  }
 
-app.get('/lookup/:domain', (req, resp) => {
-  const domainName = req.params.domain;
-  console.log(`Performing WHOIS lookup for ${domainName}`);
+  type Query {
+    domain(domainName: String!): Domain
+  }
+`;
 
-  whois.lookup(domainName, (err, res) => {
-    err === null ? resp.send(res) : resp.send(err);
-    console.log(res);
-    console.log(err + "\n");
-  });
+const resolvers = {
+  Query: {
+    domain: async (_, { domainName }, { dataSources }) => {
+      return await dataSources.whoisDataSource.getDomainInfo(domainName);
+    }
+  }
+}
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => ({
+    whoisDataSource: new WhoisDataSource()
+  })
 });
 
-app.get('*', (req, resp) => {
-  resp.status(404).send('Page does not exist');
-});
-
-module.exports = app;
-
-
-
-
-
-
-
+module.exports = server;

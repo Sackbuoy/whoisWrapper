@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "apollo-datasource-rest": "^3.4.0",
+    "apollo-server": "^3.5.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "gql": "^1.1.2",
     "whois-api": "^1.0.2"
   },
   "name": "whoisWrapper",
