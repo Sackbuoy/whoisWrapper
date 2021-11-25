@@ -52,7 +52,8 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(event) {
-    WhoisAPI.getDomainInfo(this.state.value)
+    let val = this.state.value;
+    val === "" ? this.setState({responseData: {}}) : WhoisAPI.getDomainInfo(val)
       .then(data => this.setState({responseData:data}))
     event.preventDefault();
   }
@@ -74,7 +75,7 @@ class SearchForm extends React.Component {
           :
           <div> 
             <br/>
-            Your search results will appear here    
+            Your search results will appear here
           </div>
         }
       </div>
