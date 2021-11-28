@@ -15,8 +15,12 @@ function App() {
 class Results extends React.Component {
   render() {
     const data = this.props.data;
-    if(Object.keys(data).length === 0 && data !== false) {
-      return <span>No data found for {JSON.stringify(this.props.domain)}</span>
+    const domain = this.props.domain;
+    if(domain === "") {
+      return <span>Your search results will appear here</span>
+    }
+    else if(Object.keys(data).length === 0 && data !== false) {
+      return <span>No data found for {JSON.stringify(domain)}</span>
     }
     let arr = [];
     Object.keys(this.props.data).forEach(function(key) {
@@ -68,16 +72,9 @@ class SearchForm extends React.Component {
           <input type="text" name="domain" onChange={this.handleChange} value={this.state.value} placeholder="e.g. www.google.com..."/>
           <input type="submit" value="Submit"/>
         </form>
-        {this.state.responseData ? 
-          <div>
-            <Results data={this.state.responseData} domain={this.state.value}/>
-          </div>
-          :
-          <div> 
-            <br/>
-            Your search results will appear here
-          </div>
-        }
+        <div>
+          <Results data={this.state.responseData} domain={this.state.value}/>
+        </div>
       </div>
     )
   }
